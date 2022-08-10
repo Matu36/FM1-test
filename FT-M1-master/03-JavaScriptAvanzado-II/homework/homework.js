@@ -5,7 +5,7 @@
 function counter() {
   let count = 1;
   return function () {
-    count++};
+    return count++};
 
   /*
   Ejercicio 1
@@ -28,10 +28,10 @@ function counter() {
 function cacheFunction(cb) {
 
   let cache = {};
-  return function (val) {
-    if (!cache.haswOPproperty(val)) {
-      cache [val] = cb(val);}
-      return cache [val];
+  return function (arg) {
+    if (!cache.hasOwnProperty(arg)) {
+      cache [arg] = cb(arg);}
+      return cache [arg];
     }
   }
   /*
@@ -93,7 +93,8 @@ function crearCadena(delimitadorIzquierda, delimitadorDerecha, cadena) {
 
 let textoAsteriscos = crearCadena.bind (this, "*", "*")
 let textoGuiones = crearCadena.bind (this, "-", "-")
-let textoUnderscore; = crearCadena.bind (this, "_", "_")
+let textoUnderscore = crearCadena.bind (this, "_", "_")
+
 // No modifiquen nada debajo de esta linea
 // --------------------------------
 
