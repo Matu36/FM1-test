@@ -11,51 +11,63 @@ Implementar la clase LinkedList, definiendo los siguientes métodos:
   En caso de que la búsqueda no arroje resultados, search debe retornar null.
 */
 
-function LinkedList() {
-  this._length = 0;
+class LinkedList {
+  constructor () {
   this.head = null;
 }
 
-function Node(value) {
-  this.value = value;
+
+
+add (data) { 
+  let node = new Node(data);
+  let current = this.head;
+  if (!current) {
+    this.head = node;
+    return node;
+  }
+    // si hay nodos recorremos los nodos//
+    while (current.next) {
+      current = current.next};
+      current.next = node;
+      return node;
+    }
+
+remove () {
+  if (!this.head) return null;
+  //si la lista tiene un elemento//
+if (this.head && !this.head.next) {
+  let rmNode = this.head;
+  this.head = null;
+  return rmNode.value; 
+}
+//si la lista tiene muchos valores//
+let current = this.head;
+while (current.next.next) {
+  current = current.next};
+  let rmNode = current.next;
+  current.next = null;
+  return rmNode.value;
+}
+
+search (value) {
+  if (!this.head) return null;
+  let current = this.head;
+  while (current) {
+    if (current.value === value) return current.value;
+    else if (typeof value === "function") {
+      if (value (current.value)) return current.value }
+      current = current.next;
+    }
+    return null;
+  };
+};
+
+class Node {
+  constructor(data) {
+  this.value = data;
   this.next = null;
 };
-
-LinkedList.prototype.add = function (value) {
-  let node = new Node(value);
-  if(!this.head) {this.head = node}
-  else { let current = this.head;
-while (current.next) {
-  current = current.next}
-  current.next = node;
-};
-};
-
-LinkedList.prototype.remove = function () {
-  if (!this.head) return null;
-while (current.next.next){current = current.next};
-const value = current.next.value;
-current.next = null;
-return value;
 }
-
-LinkedList.prototype.search = function (valueOrCB) {
-if (!this.head) return null;
-if (typeof valueOrCB === "function") {
-  if (valueOrCB (this.head.value)) return this.head.value;}
-else { 
-  if (this.head.value === valueOrCB) return this.head.value;}
-let current = this.head;
-while (current.next) {current = current.next;
-if (typeof valueOrCB === "function") {
-  if (valueOrCB (current.value)) return current.value; }
-  else {
-if (current.value === valueOrCB) return current. value;
-  };
-}
-return null;
-};
-
 /*
 Implementar la clase HashTable.
 
@@ -91,10 +103,9 @@ if (this.data [bucket]) return this.data [bucket] [key];
 undefined;
 };
 
-HashTable.prototype.haskey = function (key) {
+HashTable.prototype.hasKey = function (key) {
 const bucket = this.hash(key);
-if (this.data [bucket]) return this.data [bucket].hasOwnProperty(key); 
-false;
+return this.buckets [bucket]. hasOwnProperty(key);
 };
 
 HashTable.prototype.hash = function (key) {
