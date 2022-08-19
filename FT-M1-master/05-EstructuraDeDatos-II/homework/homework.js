@@ -19,7 +19,7 @@ class LinkedList {
 
 
 add (data) { 
-  let node = new Node(data);
+  let node = new Node(data); //aca relacionamos el linkedlist al nodo//
   let current = this.head;
   if (!current) {
     this.head = node;
